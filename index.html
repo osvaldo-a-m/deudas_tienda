@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#111827" />
+<title>Control de Créditos</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="app-shell">
+    <!-- Pantalla lista de clientes -->
+    <section id="view-clients" class="view">
+      <header class="topbar">
+        <h1>Clientes</h1>
+        <div class="topbar-actions">
+          <button id="btn-a11y" class="btn-icon btn-a11y" title="Activar texto grande">A+</button>
+          <button id="btn-notify" class="btn-icon" title="Activar recordatorios">🔔</button>
+        </div>
+      </header>
+
+      <div class="search-bar">
+        <input type="search" id="client-search" placeholder="Buscar cliente..." />
+      </div>
+
+      <div class="summary-bar">
+        <span>Total por cobrar</span>
+        <strong id="total-debt">$0.00</strong>
+      </div>
+
+      <button id="overdue-alert" class="overdue-alert" hidden></button>
+
+      <div id="client-list-scroll" class="scroll-area">
+        <ul id="client-list" class="list"></ul>
+        <p id="clients-empty" class="empty-text" hidden>No hay clientes todavía. Agrega el primero con el botón +.</p>
+      </div>
+
+      <button id="btn-add-client" class="fab" title="Nuevo cliente">+</button>
+    </section>
+
+    <!-- Pantalla detalle de cliente -->
+    <section id="view-client-detail" class="view">
+      <header class="topbar">
+        <button id="btn-back" class="btn-icon" title="Volver">←</button>
+        <h1 id="detail-name">Detalle del cliente</h1>
+        <button id="btn-edit-client" class="btn-icon" title="Editar" hidden>✎</button>
+      </header>
+
+      <p id="detail-empty" class="empty-text">Selecciona un cliente de la lista para ver su detalle.</p>
+
+      <div id="detail-content" class="scroll-area" hidden>
+        <div class="balance-card">
+          <span>Deuda actual</span>
+          <strong id="detail-balance">$0.00</strong>
+          <p id="detail-phone" class="muted"></p>
+          <p id="detail-limit" class="muted" hidden></p>
+          <p id="detail-overdue" class="badge-overdue" hidden></p>
+        </div>
+
+        <div class="action-row">
+          <button id="btn-add-payment" class="btn btn-success">Registrar pago</button>
+          <button id="btn-add-charge" class="btn btn-danger">Registrar deuda</button>
+        </div>
+
+        <h2 class="section-title">Historial</h2>
+        <ul id="transaction-list" class="list"></ul>
+        <p id="transactions-empty" class="empty-text" hidden>Sin movimientos todavía.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal genérico -->
+  <div id="modal-backdrop" class="modal-backdrop" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Título</h3>
+        <button id="modal-close" class="btn-icon">✕</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
